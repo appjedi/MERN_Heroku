@@ -109,7 +109,7 @@ export default class HTTPRequest {
         const response = await HTTPRequest.server(q);
 
         const responseText = await response.text();
-        //console.log("responseText", responseText);
+        console.log("responseText", responseText);
         const url = responseText.split("url:")[1].split('"}}')[0];
         const responseData = JSON.parse(responseText);
         return url;

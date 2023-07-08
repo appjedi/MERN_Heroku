@@ -8,7 +8,7 @@ const charge = async (dao, email, amount) => {
     try {
         //const dao = new MainDAO();
         const key = await dao.getKeyValue("PAYMENT_API_KEY");
-        const stripe =new Stripe(key);
+        const stripe = new Stripe(key);
 
         console.log("DB.STRIPE_PRIVATE_KEY", key);
         const description = "Donation"
@@ -42,6 +42,7 @@ const charge = async (dao, email, amount) => {
             success_url: `${process.env.CLIENT_URL}/success/${id}/2023`,
             cancel_url: `${process.env.CLIENT_URL}/cancel/${id}/2023`,
         })
+        console.log("STRIPE SESSION", session, "URL:", session.url);
         return { status: 200, url: session.url };
     } catch (e) {
         console.log(e);
