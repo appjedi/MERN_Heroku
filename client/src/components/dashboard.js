@@ -36,9 +36,10 @@ const Dashboard = ({ token, setToken }) => {
         console.log("RESP:", resp)
         setToken("");
     }
+    const statusLabels = ['pending', 'paid']
     const donationsList = donations.map((row) =>
         <tr key={row.id}>
-            <td>${row.amount}</td><td>{Helper.nicedate(row.id)}</td><td>${row.status}</td>
+            <td>${row.amount}</td><td>{Helper.nicedate(row.id)}</td><td>{statusLabels[row.status]}</td>
         </tr>
     );
 
