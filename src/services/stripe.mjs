@@ -22,9 +22,9 @@ const charge = async (dao, email, amount) => {
         }];
 
         const dt = new Date();
-        const id = dt.getTime();
+        // const id = dt.getTime();
 
-        const donationId = await dao.addDonation(email, amount);
+        const id = await dao.addDonation(email, amount);
 
         const lineItems = [
             {
