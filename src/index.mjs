@@ -207,11 +207,11 @@ async function startServer() {
   await server.start();
   server.applyMiddleware({ app });
 
-  app.get("/success/:id/:token", (req, res) => {
+  app.get("/success/:id/:token", async (req, res) => {
     const id = req.params.id;
     const token = req.params.token;
-    // dao.updateFromStripe(id, 1);
-    const msg = `<h1>Your payment has been received, confirmation # ${id}</h1>`
+    const t = await dao.updateFromStripe(id, 1);
+    const msg = `<h1>${t}!<br/>Confirmation # ${id}</h1>`
 
     const resp = { status: "success", id: id, token: token }
     res.send(msg);
