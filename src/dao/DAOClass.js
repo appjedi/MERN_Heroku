@@ -8,6 +8,8 @@ module.exports =
         }
         init = async (url) => {
             console.log("MONGO URL", url);
+            console.log("MainDAO.init.process.env.MONGO_URL", process.env.MONGO_URL);
+
             mongoose.connect(url ? url : "");
 
             const Schema = mongoose.Schema;
@@ -45,6 +47,7 @@ module.exports =
             return doc[0].value;
         }
         getConnURL() {
+            console.log("getConnURL.process.env.MONGO_URL", process.env.MONGO_URL);
             return process.env.MONGO_URL || "mongodb+srv://appuser:AppData2022@cluster0.aga82.mongodb.net/FauziaA"
             //    "mongodb://localhost:27017/FauziaA";
         }
