@@ -7,7 +7,8 @@ const Register = ({ setToken }) => {
     const [password2, setPassword2] = useState("");
     const [lastName, setLastName] = useState("");
     const [firstName, setFirstName] = useState("");
-    const [message, setMessage]= useState("");
+    const [message, setMessage] = useState("");
+    
     const usernameHandler = (e) => {
         setUsername(e.target.value);
     };

@@ -55,7 +55,7 @@ export default class HTTPRequest {
             const responseData = JSON.parse(responseText);
             const token = responseData.data.authenticate;
             //console.log("responseData.token", token)
-            setToken({ status: 1, token: token, message: "registered" });
+            setToken(token);
             return { status: 1, token: token, message: "registered" };
         } catch (e) {
             return { status: -1, token: "", message: "Invalid login", error:e };
@@ -80,9 +80,9 @@ export default class HTTPRequest {
             const token = responseData.data.reg;
             console.log("responseData.token", token)
             setToken(token)
-            return token;
+            return { status: 1, token: token, message: "registered" };
         } catch (e) {
-            return null;
+            return { status: -1, token: "", message: "failed registration", error:e };
         }
     }
     static async graphql(query) {
