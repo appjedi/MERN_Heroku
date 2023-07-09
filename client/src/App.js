@@ -9,20 +9,19 @@ import {
   Route
 } from 'react-router-dom';
 import Register from './components/register';
-import {useNavigate} from  "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 function App() {
   const [token, setToken] = useState("");
   useEffect(() => {
-        init();
+    init();
   }, []);
   const navigate = useNavigate();
   const init = () => {
     const token = sessionStorage.getItem("SERVER_API_TOKEN");
     console.log("TOKEN:", token);
-    if (token)
-    {
+    if (token) {
       setToken(token);
     } else {
       setToken("");
@@ -35,34 +34,32 @@ function App() {
     setToken("");
 
   }
-  const setTokenNext =(token, next)=>
-  {
+  const setTokenNext = (token, next) => {
     console.log("setTokenNext:", token);
     sessionStorage.setItem("SERVER_API_TOKEN", token);
     setToken(token);
-    if (next)
-    {
-        navigate(next);
+    if (next) {
+      navigate(next);
     }
   }
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Welcome to my donation site</h1>
+        <h1>Save the Elephants</h1>
         <img src={logo} className="App-logo" alt="logo" />
-        
+
         <Routes>
           <Route path="/" element={
             token ?
-              <Dashboard token={token} setToken={logout}/>
+              <Dashboard token={token} setToken={logout} />
               : <Login setToken={setToken} />} />
           <Route path="/reg" element={<Register setToken={setTokenNext} />} />
           <Route path="/home" element={
             token ?
-              <Dashboard token={token} setToken={logout}/>
+              <Dashboard token={token} setToken={logout} />
               : <Login setToken={setToken} />} />
-          <Route path="/signout" element={<Login setToken={setTokenNext} />}/>
-      
+          <Route path="/signout" element={<Login setToken={setTokenNext} />} />
+
         </Routes>
       </header>
     </div>
