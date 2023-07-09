@@ -48,7 +48,8 @@ module.exports =
         }
         getConnURL() {
             console.log("getConnURL.process.env.MONGO_URL", process.env.MONGO_URL);
-            return process.env.MONGO_URL || "mongodb+srv://appuser:AppData2022@cluster0.aga82.mongodb.net/FauziaA"
+            // return process.env.MONGO_URL || "mongodb+srv://appuser:AppData2022@cluster0.aga82.mongodb.net/FauziaA"
+            return "mongodb+srv://AppUser:Jordan11Star@cluster0.fzi3ssv.mongodb.net/Elephants";
             //    "mongodb://localhost:27017/FauziaA";
         }
         updateFromStripe = async (id, status) => {
@@ -60,9 +61,8 @@ module.exports =
         }
         updateUser = async (userId, password1, password2, lastName, firstName, email, roleId, status) => {
             try {
-                if (password1 !== password2 || (password1 + "").length < 8)
-                {
-                    return { status: -1, message:"passwords don't match or too short" };
+                if (password1 !== password2 || (password1 + "").length < 8) {
+                    return { status: -1, message: "passwords don't match or too short" };
                 }
                 const user = {
                     email: email,

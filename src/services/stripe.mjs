@@ -2,7 +2,9 @@
 //import { addDonation } from "../dao/dao1.mjs";
 import Stripe from 'stripe';
 import MainDAO from "../dao/DAOClass.js";
-
+/*
+4242 4242 4242 4242
+*/
 //const stripe (process.env.STRIPE_PRIVATE_KEY);
 const charge = async (dao, email, amount) => {
     try {

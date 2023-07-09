@@ -225,7 +225,7 @@ async function startServer() {
     res.send(msg);
   });
   app.get("/release", (req, res) => {
-    res.send("2023-07-09");
+    res.send("2023-07-09b");
   })
   if (process.env.NODE_ENV === "production") {
     app.use(express.static("client/build"));
