@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 //import { getProfile, donate, getDonations, nicedate } from '../services/server';
-import HTTPRequest from "../services/HTTPRequest";
+import HTTPReAPIRequestquest from "../services/APIRequest";
 import Donations from './donations';
 import {
     Link
@@ -13,10 +13,10 @@ const Dashboard = ({ token, setToken }) => {
         init();
     }, []);
     const init = async () => {
-        const profile = await HTTPRequest.getProfile();
+        const profile = await APIRequest.getProfile();
         setProfile(profile);
 
-        const donations = await HTTPRequest.getDonations();
+        const donations = await APIRequest.getDonations();
         setDonations(donations);
     }
     const amountHandler = (e) => {
@@ -24,15 +24,15 @@ const Dashboard = ({ token, setToken }) => {
         console.log("setAmount", e.target.value);
     };
     const donateHandler = async () => {
-        const url = await HTTPRequest.donate(amount);
+        const url = await APIRequest.donate(amount);
         window.open(url);
-        const d = await HTTPRequest.getDonations();
+        const d = await APIRequest.getDonations();
         setDonations(d);
     }
     const logout = async () => {
         console.log("DB.LOGOUT");
 
-        const resp = await HTTPRequest.logout();
+        const resp = await APIRequest.logout();
         console.log("RESP:", resp)
         setToken("");
     }

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 //import { server } from '../services/server';
-import HTTPRequest from "../services/HTTPRequest";
+import APIRequest from "../services/APIRequest";
 const Register = ({ setToken }) => {
     const [username, setUsername] = useState("");
     const [password1, setPassword1] = useState("");
@@ -28,7 +28,7 @@ const Register = ({ setToken }) => {
         console.log("donate");
     }
     const register = async () => {    
-        const resp = await HTTPRequest.register(username,lastName, firstName, password1, password2);
+        const resp = await APIRequest.register(username,lastName, firstName, password1, password2);
         if (resp.status === 1)
         {
             setToken(resp.token, "/");

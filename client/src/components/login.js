@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import HTTPRequest from "../services/HTTPRequest";
+import APIRequest from "../services/APIRequest";
 import {
     Link
 } from 'react-router-dom';
@@ -24,7 +24,7 @@ const Login = ({ setToken }) => {
         console.log("donate");
     }
     const login = async () => {
-        const resp = await HTTPRequest.auth(username, password);
+        const resp = await APIRequest.auth(username, password);
         if (resp.status === 1) {
             console.log("responseData.token", resp.token)
             setToken(resp.token, "/");

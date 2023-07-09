@@ -1,4 +1,3 @@
-const urlDev = 'http://localhost:3001/graphql';
 const url = 'graphql';
 const SERVER_API_TOKEN = "SERVER_API_TOKEN";
 let token = sessionStorage.getItem(SERVER_API_TOKEN);;
@@ -13,7 +12,7 @@ function getToken() {
 }
 function getServerURL() { return url; }
 
-export default class HTTPRequest {
+export default class APIRequest {
     static setToken(t) {
         if ((t + "").length < 100) {
             console.log("Invalid token");
@@ -44,7 +43,6 @@ export default class HTTPRequest {
             const headers = {
                 'Content-Type': 'application/json'
             }
-            console.log("AUTH 2023-07-09:", url);
             const response = await fetch(url, {
                 method: 'POST',
                 headers: headers,
@@ -60,7 +58,7 @@ export default class HTTPRequest {
             setToken(token);
             return { status: 1, token: token, message: "registered" };
         } catch (e) {
-            return { status: -1, token: "", message: "Invalid login", error: e };
+            return { status: -1, token: "", message: "Invalid login", error:e };
         }
     }
     static async register(username, lastname, firstname, password1, password2) {
@@ -69,28 +67,22 @@ export default class HTTPRequest {
                 reg(lastName: "${lastname}",firstName: "${firstname}", email:"${username}", password1:"${password1}", password2:"${password2}")
             }`;
 
-            console.log("register:", query, "url", url);
+            console.log("Q:", query)
             const headers = {
                 'Content-Type': 'application/json'
             }
-            const response = await fetch(url, {
-                method: 'POST',
-                headers: headers,
-                body: JSON.stringify({
-                    query: query,
-                }),
-            });
-
+            const response = await HTTPRequest.graphql(query);
+                
             const responseText = await response.text();
-            console.log("register.responseText", responseText);
-
+            console.log("responseText", responseText);
+        
             const responseData = JSON.parse(responseText);
             const token = responseData.data.reg;
-            console.log("register.responseData.token", token)
+            console.log("responseData.token", token);
             setToken(token)
             return { status: 1, token: token, message: "registered" };
         } catch (e) {
-            return { status: -1, token: "", message: "failed registration", error: e };
+            return { status: -1, token: "", message: "failed registration", error:e };
         }
     }
     static async graphql(query) {
@@ -105,7 +97,7 @@ export default class HTTPRequest {
                 'Content-Type': 'application/json'
             }
 
-        console.log("graphql.HEADERS:", headers, "URL:", url);
+        //console.log("HEADERS:", headers);
         const response = await fetch(url, {
             method: 'POST',
             headers: headers,
