@@ -57,6 +57,10 @@ module.exports =
         }
         updateUser = async (userId, password1, password2, lastName, firstName, email, roleId, status) => {
             try {
+                if (password1 !== password2 || (password1 + "").length < 8)
+                {
+                    return { status: -1, message:"passwords don't match or too short" };
+                }
                 const user = {
                     email: email,
                     password: password1,
@@ -71,7 +75,7 @@ module.exports =
                 console.log(e);
                 return { status: -1 };
             }
-            return { status: -1 };;
+            return { status: -1 };
         }
         getDonations = async (email) => {
             const donations = await this.DonationData.find({ email: email })

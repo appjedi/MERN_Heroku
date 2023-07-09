@@ -90,7 +90,7 @@ const resolvers = {
       if (user && user?.status === 1) {
         return jwt.sign({ data: email }, JWT_SECRET, { expiresIn: "7 days" });
       } else {
-        return '{ data: { authenticate: "Failed login" } }';
+        return `{ data: { reg: "${user.message}" } }`;
       }
     },
     donate: async (_parent, { amount }) => {
