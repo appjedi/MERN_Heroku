@@ -6,14 +6,15 @@ import {
 const Login = ({ setToken }) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-  useEffect(() => {
+    const [message, setMessage] = useState("");
+    useEffect(() => {
         init();
-  }, []);
+    }, []);
 
-  const init = () => {
-    //const token = sessionStorage.removeItem("SERVER_API_TOKEN");
-      console.log("login");
-  }
+    const init = () => {
+        //const token = sessionStorage.removeItem("SERVER_API_TOKEN");
+        console.log("login");
+    }
     const usernameHandler = (e) => {
         setUsername(e.target.value);
     };
@@ -26,11 +27,14 @@ const Login = ({ setToken }) => {
     const login = async () => {
         const un = username;
         const pw = password;
-       
-        const token = await HTTPRequest.auth(un,pw);
+
+        const token = await HTTPRequest.auth(un, pw);
         if (token) {
             console.log("responseData.token", token)
-            setToken(token, "/");
+            if (!token)
+                setMessage("Invalid Login");
+            else
+                setToken(token, "/");
 
         }
 
@@ -40,6 +44,7 @@ const Login = ({ setToken }) => {
             <p><input type="text" name="username" id="username" value={username} onChange={usernameHandler} placeholder="user name" /></p>
             <p><input type="password" name="password" id="password" value={password} onChange={passwordHandler} placeholder="password" /></p>
             <p><button onClick={login}>Login</button></p>
+            <p>{message}</p>
             <p><Link to="/reg">Register</Link></p>
         </div>)
 }
