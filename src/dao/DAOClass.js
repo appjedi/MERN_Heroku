@@ -48,9 +48,9 @@ module.exports =
         }
         getConnURL() {
             console.log("getConnURL.process.env.MONGO_URL", process.env.MONGO_URL);
-            // return process.env.MONGO_URL || "mongodb+srv://appuser:AppData2022@cluster0.aga82.mongodb.net/FauziaA"
-            return "mongodb+srv://AppUser:Jordan11Star@cluster0.fzi3ssv.mongodb.net/Elephants";
-            //    "mongodb://localhost:27017/FauziaA";
+            return process.env.MONGO_URL || "mongodb+srv://appuser:AppData2022@cluster0.aga82.mongodb.net/FauziaA"
+            //return "mongodb+srv://AppUser:Jordan11Star@cluster0.fzi3ssv.mongodb.net/Elephants";
+            //return process.env.MONGO_URL || "mongodb://localhost:27017/FauziaA";
         }
         updateFromStripe = async (id, status) => {
             const paid = new Date().getTime()
