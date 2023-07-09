@@ -21,7 +21,7 @@ function App() {
   const init = () => {
     const token = sessionStorage.getItem("SERVER_API_TOKEN");
     console.log("TOKEN:", token);
-    if (token) {
+    if (token && token != null && token.length > 10) {
       setToken(token);
     } else {
       setToken("");
