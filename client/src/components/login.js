@@ -12,7 +12,6 @@ const Login = ({ setToken }) => {
     }, []);
 
     const init = () => {
-        //const token = sessionStorage.removeItem("SERVER_API_TOKEN");
         console.log("login");
     }
     const usernameHandler = (e) => {
@@ -25,18 +24,14 @@ const Login = ({ setToken }) => {
         console.log("donate");
     }
     const login = async () => {
-        const un = username;
-        const pw = password;
-
-
-        const token = await HTTPRequest.auth(un, pw);
-        if (token !== null) {
-            console.log("responseData.token", token)
-            setToken(token, "/");
+        const resp = await HTTPRequest.auth(username, password);
+        if (resp.status === 1) {
+            console.log("responseData.token", resp.token)
+            setToken(resp.token, "/");
         }
         else {
-            console.log("Invalid Login")
-            setMessage("Invalid Login");
+            console.log(resp.message)
+            setMessage(resp.message);
         }
     }
     return (

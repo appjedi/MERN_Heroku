@@ -7,7 +7,7 @@ const Register = ({ setToken }) => {
     const [password2, setPassword2] = useState("");
     const [lastName, setLastName] = useState("");
     const [firstName, setFirstName] = useState("");
-
+    const [message, setMessage]= useState("");
     const usernameHandler = (e) => {
         setUsername(e.target.value);
     };
@@ -26,28 +26,14 @@ const Register = ({ setToken }) => {
     const donate = async () => {
         console.log("donate");
     }
-    const register = async () => {
-        const un = username;
-        const pw1 = password1;
-        const pw2 = password1;
-        const ln = lastName;
-        const fn = firstName;
-        //  lastName, firstName, email, password1, password2
-        const query = `mutation{
-                reg(lastName: "${ln}",firstName: "${fn}", email:"${un}", password1:"${pw1}", password2:"${pw2}")
-            }`;
-
-        console.log("Q:", query)
-        const response = await HTTPRequest.server(query);
-
-
-        const responseText = await response.text();
-        console.log("responseText", responseText);
-        const responseData = JSON.parse(responseText);
-        const token = responseData.data.reg;
-        console.log("responseData.token", token)
-        HTTPRequest.setToken(token)
-        setToken(token, "/");
+    const register = async () => {    
+        const resp = await HTTPRequest.register(username,lastName, firstName, password1, password2);
+        if (resp.status === 1)
+        {
+            setToken(resp.token, "/");
+        } else {
+            setMessage(resp.message);
+        }
     }
     return (
         <div>
@@ -57,7 +43,7 @@ const Register = ({ setToken }) => {
             <p><input type="password" name="password1" id="password1" value={password1} onChange={password1Handler} placeholder="password" /></p>
             <p><input type="password" name="password2" id="password2" value={password2} onChange={password2Handler} placeholder="password" /></p>
             <p><button onClick={register}>Register</button></p>
-
+            <p>{message}</p>
         </div>)
 }
 export default Register;

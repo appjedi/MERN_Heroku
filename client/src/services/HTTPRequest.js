@@ -55,6 +55,30 @@ export default class HTTPRequest {
             const responseData = JSON.parse(responseText);
             const token = responseData.data.authenticate;
             //console.log("responseData.token", token)
+            setToken({ status: 1, token: token, message: "registered" });
+            return { status: 1, token: token, message: "registered" };
+        } catch (e) {
+            return { status: -1, token: "", message: "Invalid login", error:e };
+        }
+    }
+    static async register(username, lastname, firstname, password1, password2) {
+        try {
+            const query = `mutation{
+                reg(lastName: "${lastname}",firstName: "${firstname}", email:"${username}", password1:"${password1}", password2:"${password2}")
+            }`;
+
+            console.log("Q:", query)
+            const headers = {
+                'Content-Type': 'application/json'
+            }
+            const response = await HTTPRequest.graphql(query);
+                
+            const responseText = await response.text();
+            console.log("responseText", responseText);
+        
+            const responseData = JSON.parse(responseText);
+            const token = responseData.data.reg;
+            console.log("responseData.token", token)
             setToken(token)
             return token;
         } catch (e) {
