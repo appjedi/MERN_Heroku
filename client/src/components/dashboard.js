@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 //import { getProfile, donate, getDonations, nicedate } from '../services/server';
-import HTTPReAPIRequestquest from "../services/APIRequest";
+import APIRequest from "../services/APIRequest";
 import Donations from './donations';
 import {
     Link
