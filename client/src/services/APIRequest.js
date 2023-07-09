@@ -85,7 +85,7 @@ export default class APIRequest {
             return { status: -1, token: "", message: "failed registration", error:e };
         }
     }
-    static async graphql(query) {
+    static async graphql(query, token=null) {
         token = sessionStorage.getItem(SERVER_API_TOKEN);
         const headers = token ?
             {

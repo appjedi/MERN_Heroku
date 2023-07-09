@@ -224,8 +224,9 @@ async function startServer() {
     const resp = { status: "failed", id: id, token: token }
     res.send(msg);
   });
+  const GC_RELEASE = "2023-07-09b";
   app.get("/release", (req, res) => {
-    res.send("2023-07-09b");
+    res.send(GC_RELEASE);
   })
   if (process.env.NODE_ENV === "production") {
     app.use(express.static("client/build"));
