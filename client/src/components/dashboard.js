@@ -37,8 +37,6 @@ const Dashboard = ({ token, setToken }) => {
         setToken("");
     }
 
-
-
     return (
         <div>
             <div>
