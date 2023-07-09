@@ -36,26 +36,30 @@ export default class HTTPRequest {
         return responseText;
     }
     static async auth(username, password) {
-        const query = `mutation{
+        try {
+            const query = `mutation{
                     authenticate(name:"${username}", password:"${password}")
                 }`;
-        const headers = {
-            'Content-Type': 'application/json'
+            const headers = {
+                'Content-Type': 'application/json'
+            }
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: headers,
+                body: JSON.stringify({
+                    query: query,
+                }),
+            });
+            const responseText = await response.text();
+            console.log("responseText", responseText);
+            const responseData = JSON.parse(responseText);
+            const token = responseData.data.authenticate;
+            //console.log("responseData.token", token)
+            setToken(token)
+            return token;
+        } catch (e) {
+            return null;
         }
-        const response = await fetch(url, {
-            method: 'POST',
-            headers: headers,
-            body: JSON.stringify({
-                query: query,
-            }),
-        });
-        const responseText = await response.text();
-        //console.log("responseText", responseText);
-        const responseData = JSON.parse(responseText);
-        const token = responseData.data.authenticate;
-        //console.log("responseData.token", token)
-        setToken(token)
-        return token;
     }
     static async graphql(query) {
         token = sessionStorage.getItem(SERVER_API_TOKEN);

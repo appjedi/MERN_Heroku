@@ -28,18 +28,17 @@ const Login = ({ setToken }) => {
         const un = username;
         const pw = password;
 
+
         const token = await HTTPRequest.auth(un, pw);
         if (token !== null) {
             console.log("responseData.token", token)
             setToken(token, "/");
         }
         else {
+            console.log("Invalid Login")
             setMessage("Invalid Login");
         }
-
     }
-
-
     return (
         <div>
             <p><input type="text" name="username" id="username" value={username} onChange={usernameHandler} placeholder="user name" /></p>
