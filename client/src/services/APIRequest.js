@@ -1,4 +1,4 @@
-const urlLocal = 'http://localhost:3001/graphql';
+//const urlLocal = 'http://localhost:3001/graphql';
 const url = 'graphql';
 
 const SERVER_API_TOKEN = "SERVER_API_TOKEN";
