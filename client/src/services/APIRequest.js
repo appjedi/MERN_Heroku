@@ -19,7 +19,7 @@ export default class APIRequest {
             return false;
         }
         token = t;
-        console.log("HTTPRequest.setToken", t);
+        console.log("APIRequest.setToken", t);
         sessionStorage.setItem(SERVER_API_TOKEN, t);
         return true;
     }
@@ -27,7 +27,7 @@ export default class APIRequest {
         console.log("LOGOUT:", SERVER_API_TOKEN);
         const q = "query {logout }";
         //console.log("getTodos.TOKEN:", q);
-        const response = await HTTPRequest.server(q);
+        const response = await APIRequest.server(q);
         const responseText = await response.text();
         console.log("responseText", responseText);
 
@@ -71,7 +71,7 @@ export default class APIRequest {
             const headers = {
                 'Content-Type': 'application/json'
             }
-            const response = await HTTPRequest.graphql(query);
+            const response = await APIRequest.graphql(query);
                 
             const responseText = await response.text();
             console.log("responseText", responseText);
@@ -134,7 +134,7 @@ export default class APIRequest {
                     donate(amount: ${amount})
                 }`
         //console.log("Q:", q)
-        const response = await HTTPRequest.server(q);
+        const response = await APIRequest.server(q);
 
         const responseText = await response.text();
         console.log("responseText", responseText);
@@ -147,7 +147,7 @@ export default class APIRequest {
         const q = "query {profile }";
 
         //console.log("Q:", q)
-        const response = await HTTPRequest.server(q);
+        const response = await APIRequest.server(q);
 
         const responseText = await response.text();
         //console.log("responseText", responseText);
@@ -160,7 +160,7 @@ export default class APIRequest {
     static async getDonations() {
         const q = "query {donations }";
         //console.log("getTodos.TOKEN:", q);
-        const response = await HTTPRequest.server(q, token);
+        const response = await APIRequest.server(q, token);
         const responseText = await response.text();
         //console.log("responseText", responseText);
         const responseData = JSON.parse(responseText);
