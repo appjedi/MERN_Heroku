@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+import logo from './melephant.jpg';
 import './App.css';
 import Login from './components/login';
 import Dashboard from './components/dashboard';
