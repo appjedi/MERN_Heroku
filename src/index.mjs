@@ -6,7 +6,6 @@ import dotenv from 'dotenv'
 dotenv.config();
 console.log("process.env.MONGO_URL:", process.env.MONGO_URL);
 
-// https://www.youtube.com/watch?v=QChEaOHauZY
 import { charge } from "./services/stripe.mjs";
 import express from 'express';
 import cors from 'cors';
