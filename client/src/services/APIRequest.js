@@ -1,5 +1,5 @@
-//const urlLocal = 'http://localhost:3001/graphql';
-const url = 'graphql';
+const url = 'http://localhost:3001/graphql';
+//const url = 'graphql';
 
 const SERVER_API_TOKEN = "SERVER_API_TOKEN";
 let token = sessionStorage.getItem(SERVER_API_TOKEN);;
@@ -76,9 +76,15 @@ export default class APIRequest {
             const response = await APIRequest.graphql(query);
                 
             const responseText = await response.text();
-            console.log("responseText", responseText);
-        
             const responseData = JSON.parse(responseText);
+            console.log("responseText", responseText);
+
+            if (responseText.indexOf("error:") > 0)
+            {
+                console.log("ERROR:", responseData.data.reg);
+                return { status: -1, token: "", message: responseData.data.reg, error:responseText };
+            }
+           
             const token = responseData.data.reg;
             console.log("responseData.token", token);
             setToken(token)

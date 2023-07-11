@@ -35,7 +35,6 @@ let userName
 
 const resolvers = {
   Query: {
-
     profile: async (_parent, _args, context) => {
       console.log("profile", context?.name);
 
@@ -89,7 +88,8 @@ const resolvers = {
       if (user && user?.status === 1) {
         return jwt.sign({ data: email }, JWT_SECRET, { expiresIn: "7 days" });
       } else {
-        return `{ data: { reg: "${user.message}" } }`;
+        console.log("REG ERROR:", user.message);
+        return `error: ${user.message}`;
       }
     },
     donate: async (_parent, { amount }) => {
