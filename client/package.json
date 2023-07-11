@@ -2,7 +2,7 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
-  "proxy1": "https://desolate-fortress-68304-f08865ebb3bf.herokuapp.com",
+  "proxy": "https://desolate-fortress-68304-f08865ebb3bf.herokuapp.com",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
