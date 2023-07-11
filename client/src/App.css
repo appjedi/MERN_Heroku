@@ -1,10 +1,16 @@
 .App {
   text-align: center;
+
 }
 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+
+}
+
+.saveTheElephants {
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -22,6 +28,9 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  background-image: url("melephant.jpg");
+  background-repeat: no-repeat;
+  background-size: 100%;
 }
 
 .App-link {
