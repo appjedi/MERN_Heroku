@@ -1,4 +1,3 @@
-import logo from './melephant.jpg';
 import './App.css';
 import Login from './components/login';
 import Dashboard from './components/dashboard';
@@ -46,7 +45,6 @@ function App() {
     <div className="App">
       <header className="App-header">
         <h1>Save the Elephants</h1>
-        <img src={logo} className="App-logo" alt="logo" />
 
         <Routes>
           <Route path="/" element={
