@@ -5,8 +5,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Title></title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="styles.css" />
+    <style>
+      body {
+        background-color: teal;
+      }
+    </style>
+    <script>
+      const token = sessionStorage.getItem("SERVER_API_TOKEN");
+      console.log("token", token);
+    </script>
   </head>
+
   <body>
     <h1>Payment received Thank you.</h1>
   </body>
