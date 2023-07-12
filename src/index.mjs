@@ -126,7 +126,7 @@ const resolvers = {
 const app = express();
 app.use(cors());
 app.use(express.static('public'));
-console.log("__dirname",path.resolve());
+console.log("DIRNAME",path.resolve());
 const GC_DIRNAME = path.resolve();
 let GV_RESPONSE;
 async function startServer() {
@@ -230,7 +230,7 @@ async function startServer() {
     const resp = { status: "failed", id: id, token: token }
     res.send(msg);
   });
-  const GC_RELEASE = "2023-07-09b";
+  const GC_RELEASE = "2023-07-12";
   app.get("/release", (req, res) => {
     res.send(GC_RELEASE);
   })
