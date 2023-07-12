@@ -5,6 +5,7 @@ import guid from "guid";
 import dotenv from 'dotenv'
 dotenv.config();
 console.log("process.env.MONGO_URL:", process.env.MONGO_URL);
+import path from "path";
 
 import { charge } from "./services/stripe.mjs";
 import express from 'express';
@@ -124,6 +125,9 @@ const resolvers = {
 };
 const app = express();
 app.use(cors());
+app.use(express.static('public'));
+console.log("__dirname",path.resolve());
+const GC_DIRNAME = path.resolve();
 let GV_RESPONSE;
 async function startServer() {
   const server = new ApolloServer({
@@ -210,10 +214,13 @@ async function startServer() {
     const id = req.params.id;
     const token = req.params.token;
     const t = await dao.updateFromStripe(id, 1);
-    const msg = `<h1>${t}!<br/>Confirmation # ${id}</h1>`
+    const msg = `<h1>Thank you for your donation to Save the Elephants<br/>Your Confirmation number is ${id}</h1>`
 
     const resp = { status: "success", id: id, token: token }
-    res.send(msg);
+   // res.send(msg);
+    res.sendFile(path.join(GC_DIRNAME+'/../public/payment.html'));
+
+    //res.sendFile(path.resolve(__dirname, "client", "build", "payment.html"));
   });
   app.get("/failure/:id/:token", (req, res) => {
     const id = req.params.id;

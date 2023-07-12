@@ -17,6 +17,7 @@
     "guid": "^0.0.12",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^7.3.2",
+    "path": "^0.12.7",
     "stripe": "^12.11.0"
   },
   "devDependencies": {
