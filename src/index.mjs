@@ -218,7 +218,7 @@ async function startServer() {
 
     const resp = { status: "success", id: id, token: token }
    // res.send(msg);
-    res.sendFile(path.join(GC_DIRNAME+'/../public/payment.html'));
+    res.sendFile(path.join(GC_DIRNAME+'/public/payment.html'));
 
     //res.sendFile(path.resolve(__dirname, "client", "build", "payment.html"));
   });
