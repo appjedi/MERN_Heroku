@@ -16,7 +16,7 @@ This site was greated to accept online donations for the Save the Elephants camp
 3. Apollo Server to handle GraphQL calls
 4. GraphQL for client/server API calls
 5. Mongo for database
-6. Nongoose ODM for Object Data Model
+6. Mongoose ODM for Object Data Model
 7. Stripe for payment processing
 
 Link to site: https://donation-elephants-6f54b64b9de1.herokuapp.com
