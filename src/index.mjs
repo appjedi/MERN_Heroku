@@ -232,7 +232,7 @@ async function startServer() {
   });
   const GC_RELEASE = "2023-07-12";
   app.get("/release", (req, res) => {
-    res.send(GC_RELEASE);
+    res.send({ release: GC_RELEASE, path: GC_DIRNAME });
   })
   if (process.env.NODE_ENV === "production") {
     app.use(express.static("client/build"));
