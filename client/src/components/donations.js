@@ -5,7 +5,7 @@ const Donations = ({ donations }) => {
     const statusLabels = ['pending', 'paid']
     const donationsList = donations.map((row) =>
         <tr key={row.id}>
-            <td>${row.amount}</td><td>{Helper.nicedate(row.id)}</td><td>{statusLabels[row.status]}</td>
+            <td>{Helper.nicedate(row.id)}</td><td>${row.amount}</td><td>{statusLabels[row.status]}</td>
         </tr>
     );
     if (donations.length < 1) {
@@ -13,7 +13,7 @@ const Donations = ({ donations }) => {
     }
     return (
         <div>
-            <table border='1'><thead><tr><th>Amount</th><th>Date</th><th>Status</th></tr></thead><tbody>{donationsList}</tbody></table>
+            <table border='1'><thead><tr><th>Date</th><th>Amount</th><th>Status</th></tr></thead><tbody>{donationsList}</tbody></table>
         </div>
     )
 }

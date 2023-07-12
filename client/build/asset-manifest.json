@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/static/css/main.6d867198.css",
-    "main.js": "/static/js/main.ace2b8d9.js",
+    "main.css": "/static/css/main.3b3f8663.css",
+    "main.js": "/static/js/main.c07d4189.js",
     "static/media/melephant.jpg": "/static/media/melephant.18176cd4cf92186d4fe2.jpg",
     "index.html": "/index.html",
-    "main.6d867198.css.map": "/static/css/main.6d867198.css.map",
-    "main.ace2b8d9.js.map": "/static/js/main.ace2b8d9.js.map"
+    "main.3b3f8663.css.map": "/static/css/main.3b3f8663.css.map",
+    "main.c07d4189.js.map": "/static/js/main.c07d4189.js.map"
   },
   "entrypoints": [
-    "static/css/main.6d867198.css",
-    "static/js/main.ace2b8d9.js"
+    "static/css/main.3b3f8663.css",
+    "static/js/main.c07d4189.js"
   ]
 }
