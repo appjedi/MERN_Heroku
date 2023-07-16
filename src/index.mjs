@@ -218,10 +218,14 @@ async function startServer() {
     const msg = `<h1>Thank you for your donation to Save the Elephants<br/>Your Confirmation number is ${id}</h1>`
 
     const resp = { status: "success", id: id, token: token }
+    let content = fs.readFileSync(path.join(GC_DIRNAME+'/public/payment.html'),
+      { encoding: 'utf8', flag: 'r' });
+    //console.log(content);
+    content = content.split("@@TOKEN").join(token);
+    res.send(content);
    // res.send(msg);
-    res.sendFile(path.join(GC_DIRNAME+'/public/payment.html'));
+    //res.sendFile(path.join(GC_DIRNAME+'/public/payment.html'));
 
-    //res.sendFile(path.resolve(__dirname, "client", "build", "payment.html"));
   });
   app.get("/failure/:id/:token", (req, res) => {
     const id = req.params.id;
