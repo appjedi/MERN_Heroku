@@ -5,6 +5,8 @@ import guid from "guid";
 import dotenv from 'dotenv'
 dotenv.config();
 console.log("process.env.MONGO_URL:", process.env.MONGO_URL);
+import path from "path";
+import fs from 'fs';
 
 import { charge } from "./services/stripe.mjs";
 import express from 'express';
@@ -124,6 +126,9 @@ const resolvers = {
 };
 const app = express();
 app.use(cors());
+app.use(express.static('public'));
+console.log("DIRNAME",path.resolve());
+const GC_DIRNAME = path.resolve();
 let GV_RESPONSE;
 async function startServer() {
   const server = new ApolloServer({
@@ -210,10 +215,17 @@ async function startServer() {
     const id = req.params.id;
     const token = req.params.token;
     const t = await dao.updateFromStripe(id, 1);
-    const msg = `<h1>${t}!<br/>Confirmation # ${id}</h1>`
+    const msg = `<h1>Thank you for your donation to Save the Elephants<br/>Your Confirmation number is ${id}</h1>`
 
     const resp = { status: "success", id: id, token: token }
-    res.send(msg);
+    let content = fs.readFileSync(path.join(GC_DIRNAME+'/public/payment.html'),
+      { encoding: 'utf8', flag: 'r' });
+    //console.log(content);
+    content = content.split("@@TOKEN").join(token);
+    res.send(content);
+   // res.send(msg);
+    //res.sendFile(path.join(GC_DIRNAME+'/public/payment.html'));
+
   });
   app.get("/failure/:id/:token", (req, res) => {
     const id = req.params.id;
@@ -223,9 +235,9 @@ async function startServer() {
     const resp = { status: "failed", id: id, token: token }
     res.send(msg);
   });
-  const GC_RELEASE = "2023-07-09b";
+  const GC_RELEASE = "2023-07-12";
   app.get("/release", (req, res) => {
-    res.send(GC_RELEASE);
+    res.send({ release: GC_RELEASE, path: GC_DIRNAME });
   })
   if (process.env.NODE_ENV === "production") {
     app.use(express.static("client/build"));
