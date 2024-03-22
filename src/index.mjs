@@ -13,7 +13,8 @@ import express from 'express';
 import cors from 'cors';
 //import { dbAuth, updateUser, getUserByEmail, getDonations, updateFromStripe } from "./dao/dao1.mjs";
 import MainDAO from "./dao/DAOClass.js";
-const dao = new MainDAO(process.env.MONGO_URL);
+const MONGO_URL = process.env.MONGO_URL || "";
+const dao = new MainDAO(MONGO_URL);
 const PORT = process.env.PORT || 3001;
 const JWT_SECRET = process.env.JWT_SECRET || "secret";
 
@@ -127,7 +128,7 @@ const resolvers = {
 const app = express();
 app.use(cors());
 app.use(express.static('public'));
-console.log("DIRNAME",path.resolve());
+console.log("DIRNAME", path.resolve());
 const GC_DIRNAME = path.resolve();
 let GV_RESPONSE;
 async function startServer() {
@@ -218,12 +219,12 @@ async function startServer() {
     const msg = `<h1>Thank you for your donation to Save the Elephants<br/>Your Confirmation number is ${id}</h1>`
 
     const resp = { status: "success", id: id, token: token }
-    let content = fs.readFileSync(path.join(GC_DIRNAME+'/public/payment.html'),
+    let content = fs.readFileSync(path.join(GC_DIRNAME + '/public/payment.html'),
       { encoding: 'utf8', flag: 'r' });
     //console.log(content);
     content = content.split("@@TOKEN").join(token);
     res.send(content);
-   // res.send(msg);
+    // res.send(msg);
     //res.sendFile(path.join(GC_DIRNAME+'/public/payment.html'));
 
   });
