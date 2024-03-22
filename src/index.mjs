@@ -13,7 +13,7 @@ import express from 'express';
 import cors from 'cors';
 //import { dbAuth, updateUser, getUserByEmail, getDonations, updateFromStripe } from "./dao/dao1.mjs";
 import MainDAO from "./dao/DAOClass.js";
-const MONGO_URL = process.env.MONGO_URL || "";
+const MONGO_URL = "mongodb+srv://appuser:AppData2022@cluster0.aga82.mongodb.net";
 const dao = new MainDAO(MONGO_URL);
 const PORT = process.env.PORT || 3001;
 const JWT_SECRET = process.env.JWT_SECRET || "secret";
