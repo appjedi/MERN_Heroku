@@ -60,7 +60,7 @@ export default class APIRequest {
             setToken(token);
             return { status: 1, token: token, message: "registered" };
         } catch (e) {
-            return { status: -1, token: "", message: "Invalid login", error:e };
+            return { status: -1, token: "", message: "Invalid login", error: e };
         }
     }
     static async register(username, lastname, firstname, password1, password2) {
@@ -74,26 +74,25 @@ export default class APIRequest {
                 'Content-Type': 'application/json'
             }
             const response = await APIRequest.graphql(query);
-                
+
             const responseText = await response.text();
             const responseData = JSON.parse(responseText);
             console.log("responseText", responseText);
 
-            if (responseText.indexOf("error:") > 0)
-            {
+            if (responseText.indexOf("error:") > 0) {
                 console.log("ERROR:", responseData.data.reg);
-                return { status: -1, token: "", message: responseData.data.reg, error:responseText };
+                return { status: -1, token: "", message: responseData.data.reg, error: responseText };
             }
-           
+
             const token = responseData.data.reg;
             console.log("responseData.token", token);
             setToken(token)
             return { status: 1, token: token, message: "registered" };
         } catch (e) {
-            return { status: -1, token: "", message: "failed registration", error:e };
+            return { status: -1, token: "", message: "failed registration", error: e };
         }
     }
-    static async graphql(query, token=null) {
+    static async graphql(query, token = null) {
         token = sessionStorage.getItem(SERVER_API_TOKEN);
         const headers = token ?
             {
