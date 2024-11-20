@@ -1,5 +1,5 @@
 import { ApolloServer, gql, AuthenticationError } from "apollo-server-express";
-import jwt from "jsonwebtoken";
+import  from "jsonwebtoken";
 import guid from "guid";
 require("dotenv").config();
 import { dbAuth, updateUser, getUserByEmail, getDonations, updateFromStripe } from "./dao/dao";
