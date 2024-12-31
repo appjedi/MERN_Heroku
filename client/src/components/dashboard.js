@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+//import '../styles/dashboard.css';
 //import { getProfile, donate, getDonations, nicedate } from '../services/server';
 import APIRequest from "../services/APIRequest";
 import Donations from './donations';
