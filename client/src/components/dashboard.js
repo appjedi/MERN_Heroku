@@ -13,7 +13,7 @@ const Dashboard = ({ token, setToken }) => {
         init();
     }, []);
     const init = async () => {
-        const profile = await APIRequest.getProfile();
+        const profuserile = await APIRequest.getProfile();
         setProfile(profile);
 
         const donations = await APIRequest.getDonations();
